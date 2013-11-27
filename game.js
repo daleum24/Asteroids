@@ -47,18 +47,16 @@
     this.move();
     this.draw();
     var self = this;
-    if (this.bullets.length > 0) {
-      this.bullets.forEach( function(bullet) {
-        bullet.hitAsteroids(self);
-      });
-    }
+
+    this.bullets.forEach( function(bullet) {
+      bullet.hitAsteroids(self);
+    });
     this.checkCollisions();
   };
 
   Screen.prototype.start = function() {
     this.bindKeyHandlers();
-    var self = this;
-    this.timer = setInterval(self.step.bind(self), 30);
+    this.timer = setInterval(this.step.bind(this), 30);
   };
 
   Screen.prototype.checkCollisions = function() {
