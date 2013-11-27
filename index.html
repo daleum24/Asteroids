@@ -1,10 +1,12 @@
 <html>
   <head>
     <title>Asteroids</title>
+    <script src="./underscore.js"></script>
     <script src="./keymaster.js"></script>
     <script src="./moving_object.js"></script>
     <script src="./ship.js"></script>
     <script src="./asteroid.js"></script>
+    <script src="./bullet.js"></script>
     <script src="./game.js"></script>
   </head>
   <body>
@@ -12,7 +14,7 @@
     <script>
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
-    var game = new Game.Screen(ctx,500,500,0);
+    var game = new Game.Screen(ctx,500,500,5);
     game.start();
     </script>
   </body>

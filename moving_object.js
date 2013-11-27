@@ -17,8 +17,18 @@ Function.prototype.inherits = function (BaseClass) {
   }
 
   MovingObject.prototype.move = function(maxX, maxY){
-    this.xPos = Math.abs((this.xPos + this.speed * Math.cos(this.theta)) % maxX);
-    this.yPos = Math.abs((this.yPos + this.speed * Math.sin(this.theta)) % maxY);
+    this.xPos = (this.xPos + this.speed * Math.cos(this.theta));
+    this.yPos = (this.yPos + this.speed * Math.sin(this.theta));
+    if (this.xPos > maxX) {
+      this.xPos = this.xPos % maxX;
+    } else if (this.xPos < 0) {
+      this.xPos = maxX + this.xPos + 1;
+    }
+    if (this.yPos > maxY) {
+      this.yPos = this.yPos % maxY;
+    } else if (this.yPos < 0) {
+      this.yPos = maxY + this.yPos + 1;
+    }
   }
 
   MovingObject.prototype.draw = function(ctx){

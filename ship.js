@@ -16,4 +16,8 @@
   Ship.prototype.rotate = function(angle) {
     this.theta += angle;
   };
+
+  Ship.prototype.fireBullet = function() {
+    return new Game.Bullet([this.xPos, this.yPos], 20, this.theta);
+  };
 })(this);

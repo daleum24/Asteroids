@@ -10,6 +10,7 @@
     var pos = [dimX/2, dimY/2]
     var temp = new Game.Ship(pos,0,0);
     this.ship = temp;
+    this.bullets = [];
   };
 
   Screen.prototype.addAsteroids = function(num) {
@@ -26,6 +27,9 @@
     this.asteroids.forEach( function(aster) {
       aster.draw(self.ctx);
     });
+    this.bullets.forEach( function(bullet) {
+      bullet.draw(self.ctx);
+    });
   };
 
   Screen.prototype.move = function() {
@@ -34,11 +38,20 @@
     this.asteroids.forEach( function(aster) {
       aster.move(self.dimX, self.dimY);
     });
+    this.bullets.forEach( function(bullet) {
+      bullet.move(self.dimX, self.dimY);
+    });
   };
 
   Screen.prototype.step = function() {
     this.move();
     this.draw();
+    var self = this;
+    if (this.bullets.length > 0) {
+      this.bullets.forEach( function(bullet) {
+        bullet.hitAsteroids(self);
+      });
+    }
     this.checkCollisions();
   };
 
@@ -51,7 +64,6 @@
   Screen.prototype.checkCollisions = function() {
     for(var i = 0; i < this.asteroids.length; i++) {
       if (this.asteroids[i].isCollidedWith(this.ship)) {
-        alert("GAME OVER!");
         this.stop();
         return true;
       }
@@ -61,6 +73,7 @@
 
   Screen.prototype.stop = function() {
     clearInterval(this.timer);
+    alert("GAME OVER!");
   };
 
   Screen.prototype.bindKeyHandlers = function() {
@@ -68,5 +81,21 @@
     key('down', this.ship.impulse.bind(this.ship, -1));
     key('left', this.ship.rotate.bind(this.ship, 0.2));
     key('right', this.ship.rotate.bind(this.ship, -0.2));
+    key('space', this.addBullet.bind(this));
+  };
+
+  Screen.prototype.addBullet = function() {
+    var bullet = this.ship.fireBullet();
+    this.bullets.push(bullet);
+  };
+
+  Screen.prototype.removeAsteroid = function(aster) {
+    var arr = this.asteroids;
+    this.asteroids = _.without(arr, aster);
+  };
+
+  Screen.prototype.removeBullet = function(bullet) {
+    var arr = this.bullets;
+    this.bullets = _.without(arr, bullet);
   };
 })(this);
