@@ -4,3 +4,10 @@ Function.prototype.inherits = function (BaseClass) {
   this.prototype = new Surrogate();
 };
 
+
+
+
+
+
+
+

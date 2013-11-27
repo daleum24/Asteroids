@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Asteroids</title>
+    <script src="./keymaster.js"></script>
+    <script src="./moving_object.js"></script>
+    <script src="./ship.js"></script>
+    <script src="./asteroid.js"></script>
+    <script src="./game.js"></script>
+  </head>
+  <body>
+    <canvas width="500" height="500" id="canvas"></canvas>
+    <script>
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    var game = new Game.Screen(ctx,500,500,0);
+    game.start();
+    </script>
+  </body>
+</html>
