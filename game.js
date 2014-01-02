@@ -8,8 +8,7 @@
     this.asteroids = [];
     this.addAsteroids(numAsteroids);
     var pos = [dimX/2, dimY/2]
-    var temp = new Game.Ship(pos,0,0);
-    this.ship = temp;
+    this.ship = new Game.Ship(pos,0,0);
     this.bullets = [];
   };
 
@@ -56,7 +55,7 @@
 
   Screen.prototype.start = function() {
     this.bindKeyHandlers();
-    this.timer = setInterval(this.step.bind(this), 30);
+    this.timer = setInterval(this.step.bind(this), 10);
   };
 
   Screen.prototype.checkCollisions = function() {
@@ -76,9 +75,8 @@
 
   Screen.prototype.bindKeyHandlers = function() {
     key('up', this.ship.impulse.bind(this.ship, 1));
-    key('down', this.ship.impulse.bind(this.ship, -1));
-    key('left', this.ship.rotate.bind(this.ship, 0.2));
-    key('right', this.ship.rotate.bind(this.ship, -0.2));
+    key('left', this.ship.rotate.bind(this.ship, -0.25));
+    key('right', this.ship.rotate.bind(this.ship, 0.25));
     key('space', this.addBullet.bind(this));
   };
 

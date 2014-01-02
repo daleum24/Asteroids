@@ -19,11 +19,13 @@ Function.prototype.inherits = function (BaseClass) {
   MovingObject.prototype.move = function(maxX, maxY){
     this.xPos = (this.xPos + this.speed * Math.cos(this.theta));
     this.yPos = (this.yPos + this.speed * Math.sin(this.theta));
+		
     if (this.xPos > maxX) {
       this.xPos = this.xPos % maxX;
     } else if (this.xPos < 0) {
       this.xPos = maxX + this.xPos + 1;
     }
+		
     if (this.yPos > maxY) {
       this.yPos = this.yPos % maxY;
     } else if (this.yPos < 0) {
@@ -34,7 +36,6 @@ Function.prototype.inherits = function (BaseClass) {
   MovingObject.prototype.draw = function(ctx){
     ctx.beginPath();
     ctx.strokeStyle = this.color;
-    // ctx.fillRect(this.xPos,this.yPos,50,50);
     ctx.arc(this.xPos,this.yPos,this.radius,0,Math.PI*2);
     ctx.stroke();
   }
