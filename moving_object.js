@@ -21,23 +21,24 @@ Function.prototype.inherits = function (BaseClass) {
     this.yPos = (this.yPos + this.speed * Math.sin(this.theta));
 		
     if (this.xPos > maxX) {
-      this.xPos = this.xPos % maxX;
+      this.xPos = this.xPos - maxX;
     } else if (this.xPos < 0) {
-      this.xPos = maxX + this.xPos + 1;
+      this.xPos = maxX + this.xPos;
     }
 		
     if (this.yPos > maxY) {
-      this.yPos = this.yPos % maxY;
+      this.yPos = this.yPos - maxY;
     } else if (this.yPos < 0) {
-      this.yPos = maxY + this.yPos + 1;
+      this.yPos = maxY + this.yPos;
     }
   }
 
   MovingObject.prototype.draw = function(ctx){
     ctx.beginPath();
     ctx.strokeStyle = this.color;
+		ctx.fillStyle   = this.color
     ctx.arc(this.xPos,this.yPos,this.radius,0,Math.PI*2);
-    ctx.stroke();
+    ctx.fill();
   }
 
   MovingObject.prototype.isCollidedWith = function(otherObject){

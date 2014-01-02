@@ -3,7 +3,7 @@
 
   var Ship = Game.Ship = function(pos, speed, theta) {
     var COLOR = "red";
-    var RADIUS = 15;
+    var RADIUS = 12;
     Game.MovingObject.call(this, RADIUS, COLOR, pos, speed, theta);
   };
 
@@ -20,6 +20,27 @@
 		ctx.lineTo(this.xPos + 10 * Math.cos(this.theta), this.yPos + 10 * Math.sin(this.theta))
     ctx.fill();
 	}
+	
+  Ship.prototype.move = function(maxX, maxY){
+		var new_speed = this.speed - 0.01
+		
+		this.speed = (new_speed < 0) ? 0 : new_speed
+		
+    this.xPos = (this.xPos + this.speed * Math.cos(this.theta));
+    this.yPos = (this.yPos + this.speed * Math.sin(this.theta));
+		
+    if (this.xPos > maxX) {
+      this.xPos = this.xPos % maxX;
+    } else if (this.xPos < 0) {
+      this.xPos = maxX + this.xPos + 1;
+    }
+		
+    if (this.yPos > maxY) {
+      this.yPos = this.yPos % maxY;
+    } else if (this.yPos < 0) {
+      this.yPos = maxY + this.yPos + 1;
+    }
+  }
 
   Ship.prototype.impulse = function(power) {
     this.speed += power;
@@ -30,6 +51,6 @@
   };
 
   Ship.prototype.fireBullet = function() {
-    return new Game.Bullet([this.xPos, this.yPos], 20, this.theta);
+    return new Game.Bullet([this.xPos, this.yPos], 5, this.theta);
   };
 })(this);

@@ -39,6 +39,10 @@
     });
     this.bullets.forEach( function(bullet) {
       bullet.move(self.dimX, self.dimY);
+			bullet.reduceDuration();
+			if ( bullet.duration === 0 ){ 
+				self.removeBullet(bullet)
+			}
     });
   };
 
@@ -75,8 +79,8 @@
 
   Screen.prototype.bindKeyHandlers = function() {
     key('up', this.ship.impulse.bind(this.ship, 1));
-    key('left', this.ship.rotate.bind(this.ship, -0.25));
-    key('right', this.ship.rotate.bind(this.ship, 0.25));
+    key('left', this.ship.rotate.bind(this.ship, -0.28));
+    key('right', this.ship.rotate.bind(this.ship, 0.28));
     key('space', this.addBullet.bind(this));
   };
 
