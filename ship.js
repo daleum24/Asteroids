@@ -3,7 +3,7 @@
 
   var Ship = Game.Ship = function(pos, speed, theta) {
     var COLOR = "red";
-    var RADIUS = 12;
+    var RADIUS = 7;
     Game.MovingObject.call(this, RADIUS, COLOR, pos, speed, theta);
   };
 

@@ -78,9 +78,9 @@
   };
 
   Screen.prototype.bindKeyHandlers = function() {
-    key('up', this.ship.impulse.bind(this.ship, 1));
-    key('left', this.ship.rotate.bind(this.ship, -0.28));
-    key('right', this.ship.rotate.bind(this.ship, 0.28));
+    key('up', this.ship.impulse.bind(this.ship, 0.6));
+    key('left', this.ship.rotate.bind(this.ship, -0.30));
+    key('right', this.ship.rotate.bind(this.ship, 0.30));
     key('space', this.addBullet.bind(this));
   };
 

@@ -10,26 +10,25 @@
   Asteroid.inherits(Game.MovingObject);
 
   var randomPos = function(max) {
-    return Math.random() * max;
+		var pos = Math.random() * max
+		while ((pos > 100) && (pos < 400)){
+			pos = Math.random() * max
+		}
+    return pos
   }
 
   var randomAsteroid = Game.randomAsteroid = function(dimX, dimY) {
     var pos = [];
 		
 		var xPos = randomPos(dimX) 
-		while ((xPos > 100) && (xPos < 400)){
-			xPos = randomPos(dimX)
-		}
     pos.push(xPos);
 		
 		var yPos = randomPos(dimY) 
-		while ((yPos > 100) && (yPos < 400)){
-			yPos = randomPos(dimY)
-		}
     pos.push(yPos);
 		
     var speed = (Math.random()+1) * 0.5;
     var theta = Math.random() * 2 * Math.PI;
     return new Asteroid(pos,speed,theta);
   };
+	
 })(this);
