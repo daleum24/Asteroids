@@ -1,7 +1,7 @@
 Asteroids
 =========
 
-Instruction:
+Dem:
 -----
 Live demo hosted on my [portfolio](http://www.daleum.com)  
 To play, click the "live" link. 
